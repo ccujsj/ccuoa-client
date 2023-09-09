@@ -40,6 +40,7 @@ class ClintSession:
         self.__header = {}
         self.__not_expired = False
         self.__baseurl = BASEURL
+        self.__show_send = False
     def set_bearer(self,bearer:str):
         auth = JWT(bearer)
         self.__not_expired = auth.is_valid
@@ -60,11 +61,15 @@ class ClintSession:
             raise Exception(r.json())
 
     def post(self,url,**kwargs):
+        if self.__show_send:
+            print(kwargs)
         if not self.__not_expired:
             raise Exception('Invalid Bearer or bearer has expired')
-        r = requests.post(url=str(self.__baseurl+url),**kwargs)
+        r = requests.post(url=str(self.__baseurl+url),headers=self.__header,**kwargs)
         if r.status_code == 200:
             return r
         else:
-            raise Exception(r.json())
-
+            raise Exception(r.text)
+    @property
+    def is_show_send(self):
+        return self.__show_send

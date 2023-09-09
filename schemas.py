@@ -25,10 +25,19 @@ class StudentSchema(BaseModel):
     stu_status: Optional[str]
     stu_graduate: Optional[str]
 
+def student_filter_func(k,v):
+    if k == "stu_id":
+        v = str(v)
+    if k == "stu_score":
+        v = float(v)
+    if k == "stu_clazz":
+        v = str(v)
+    if v is None:
+        v = "missing"
+    return v
 
 
 class MoralRecordSchema(BaseModel):
-    rec_id: int
     student_id: str
     student_name: str
     rec_types: str
@@ -41,3 +50,21 @@ class MoralRecordSchema(BaseModel):
     chk_username: str
     chk_commit: Optional[str]
     chk_date: datetime.datetime
+def moral_filter_func(k,v):
+    """
+    filter function need to be redesigned after being deployed
+    :param k: field name
+    :param v: value of this field
+    :return:
+    """
+    if k == "chk_date":
+        v = datetime.datetime.now()
+    if k == "rec_date":
+        v = datetime.datetime.now()  # TODO this filter need to be changed
+    if k == "rec_score":
+        v = float(v)
+    if k == "rec_status":
+        v = int(v)
+    if v is None:
+        v = "missing"
+    return v
