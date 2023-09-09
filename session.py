@@ -3,6 +3,7 @@ import datetime
 import jwt
 import base64
 import json
+import logger
 BASEURL = "https://pdigs.com"
 class JWT:
     def __init__(self,jwt_token:str):
@@ -55,6 +56,7 @@ class ClintSession:
         if not self.__not_expired:
             raise Exception('Invalid Bearer or bearer has expired')
         r = requests.get(self.__baseurl + url,headers=self.__header)
+        logger.logger.info("a GET send to " + r.url)
         if r.status_code == 200:
             return r
         else:
@@ -66,6 +68,7 @@ class ClintSession:
         if not self.__not_expired:
             raise Exception('Invalid Bearer or bearer has expired')
         r = requests.post(url=str(self.__baseurl+url),headers=self.__header,**kwargs)
+        logger.logger.info("a POST send to " + r.url)
         if r.status_code == 200:
             return r
         else:

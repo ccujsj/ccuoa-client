@@ -18,3 +18,4 @@ def get_student_score(stu_id):
     print(s.model_dump())
 
 get_student_score("042040315")
+get_all_record()
