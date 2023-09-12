@@ -1,11 +1,10 @@
-from mapping_model import load_excel_to_model
-from schemas import StudentSchema, student_filter_func
-from session import ClintSession
+from core.mapping_model import load_excel_to_model
+from core.schemas import StudentSchema, student_filter_func
+from core.session import ClintSession
 
 li = load_excel_to_model("student_datasource.xlsx", StudentSchema, student_filter_func)
 session = ClintSession()
-session.update_baseurl("http://localhost:8000")
-session.set_bearer("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJhZG1pbiIsInNjb3BlIjpbInN0dWRlbnQiLCJzdGFmZiIsInN5c3RlbSJdLCJleHAiOjE2OTQzMzc3MzZ9.KWGThipWNm9e8sgC8BF-dSGP-C49EZ3F9Te7cnIR51U")
+session.set_bearer("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3IiOiJ6aGFuZ3poZW5nIiwic2NvcGUiOlsic3R1ZGVudCIsInN0YWZmIiwic3lzdGVtIl0sImV4cCI6MTY5NDQyNzU5N30.7J3_Nj_QlSzBSOqbUy0LwtVN5ndhPm7iILv1CZtj14M")
 for student in li:
     r = session.post("/api/v1/put/student/info",json=student.model_dump(mode='json'))
     print(r)

@@ -1,7 +1,4 @@
 from openpyxl import load_workbook
-from schemas import StudentSchema
-from session import ClintSession
-
 
 
 def reverse_dict(dic:dict):

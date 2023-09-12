@@ -1,6 +1,5 @@
-from mapping_model import load_excel_to_model
-from schemas import StudentSchema
-from session import ClintSession
+from core.schemas import StudentSchema
+from core.session import ClintSession
 
 session = ClintSession()
 session.update_baseurl("http://localhost:8000")

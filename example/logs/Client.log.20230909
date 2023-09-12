@@ -1,0 +1,7 @@
+[ INFO ] 2023-09-09 20:49:53 session.py:59 a GET send to http://localhost:8000/api/v1/get/student/info/id?stu_id=042040315
+[ INFO ] 2023-09-09 20:50:18 session.py:59 a GET send to http://localhost:8000/api/v1/get/student/info/id?stu_id=042040315
+[ INFO ] 2023-09-09 20:50:20 session.py:59 a GET send to http://localhost:8000/api/v1/get/moral/record/byType?t=4
+[ INFO ] 2023-09-09 20:50:21 session.py:59 a GET send to http://localhost:8000/api/v1/update/moral/publish
+[ INFO ] 2023-09-09 20:50:29 session.py:71 a POST send to http://localhost:8000/api/v1/new/record/withResult
+[ INFO ] 2023-09-09 20:50:31 session.py:71 a POST send to http://localhost:8000/api/v1/new/record/withResult
+[ INFO ] 2023-09-09 20:50:33 session.py:59 a GET send to http://localhost:8000/api/v1/update/moral/publish

@@ -36,20 +36,40 @@ class JWT:
         return dt_now < exp
 
 class ClintSession:
+    """
+    usage of this session
+    object.set_bearer()
+
+    """
     def __init__(self):
         self.__bearer = ""
         self.__header = {}
         self.__not_expired = False
         self.__baseurl = BASEURL
         self.__show_send = False
+    def login(self,username,password):
+        header = {"content-type":"application/x-www-form-urlencoded"}
+        r = requests.post(self.__baseurl + "/api/v1/token",headers=header,
+                          data=f"username={username}&password={password}")
+        if r.status_code != 200:
+            raise Exception(r.text)
+        logger.logger.info("USERNAME " + username + " Logged in success")
+        if self.__show_send:
+            print("LOGIN SUCCESS, by " + username, " a bearer returned by " + r.url)
+        self.set_bearer(r.json()['access_token'])
+        self.__not_expired = True
     def set_bearer(self,bearer:str):
         auth = JWT(bearer)
+        if self.__show_send:
+            print(f"JWT DECODE SUCCESS,username:{auth.username}, exp:{auth.exp}, with scope {auth.scope}")
         self.__not_expired = auth.is_valid
         if self.__not_expired:
             self.__bearer = bearer
         self.__header.update({
             "Authorization":"Bearer " + bearer
         })
+    def add_header(self,header_dict:dict):
+        self.__header.update(header_dict)
     def update_baseurl(self,baseurl:str):
         self.__baseurl = baseurl
     def get(self,url):
@@ -73,6 +93,5 @@ class ClintSession:
             return r
         else:
             raise Exception(r.text)
-    @property
-    def is_show_send(self):
-        return self.__show_send
+    def show_send(self,v):
+        self.__show_send = v
