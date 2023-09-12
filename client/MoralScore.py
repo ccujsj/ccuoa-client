@@ -13,10 +13,10 @@ class MoralRecordSchema(BaseModel):
     rec_urls: str
     rec_desc: str
     rec_date: datetime.datetime
-    rec_msg: Optional[str]
+    rec_msg: Optional[str] = "无备注"
     rec_status: int
     chk_username: str
-    chk_commit: Optional[str]
+    chk_commit: Optional[str] = "无备注"
     chk_date: datetime.datetime
 
 class MoralScore:
