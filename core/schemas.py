@@ -50,21 +50,4 @@ class MoralRecordSchema(BaseModel):
     chk_username: str
     chk_commit: Optional[str]
     chk_date: datetime.datetime
-def moral_filter_func(k,v):
-    """
-    filter function need to be redesigned after being deployed
-    :param k: field name
-    :param v: value of this field
-    :return:
-    """
-    if k == "chk_date":
-        v = datetime.datetime.now()
-    if k == "rec_date":
-        v = datetime.datetime.now()  # TODO this filter need to be changed
-    if k == "rec_score":
-        v = float(v)
-    if k == "rec_status":
-        v = int(v)
-    if v is None:
-        v = "missing"
-    return v
+

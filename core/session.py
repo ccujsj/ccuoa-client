@@ -35,7 +35,7 @@ class JWT:
         exp = datetime.datetime.fromtimestamp(self.__payload['exp'])
         return dt_now < exp
 
-class ClintSession:
+class ClientSession:
     """
     usage of this session
     object.set_bearer()

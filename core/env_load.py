@@ -1,9 +1,9 @@
 def load(filename):
     """
-    due to the network problem I cannot install 'dotenv' package successfully,
-    so i write it
+    Due to the author's network problems, a third-party package
+    called `dotenv` could not be installed, so I built my own wheel instead.
     :param filename:
-    :return:
+    :return: dict
     """
     d = {}
     with open(filename,'r',encoding='utf8') as f:
